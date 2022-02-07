@@ -24,7 +24,7 @@ pipeline {
         
         stage('Cloning Git') {
             steps {
-                checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/ismaeelhaider72/jenkins-build-Image-push-to-ecr.git']]])
+                checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/ismaeelhaider72/ismaeel-jenkins-build-images.git']]])
             }
         }
   
