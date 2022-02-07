@@ -1,11 +1,11 @@
-FROM centos:centos6
-MAINTAINER  ismaeelhaider
-RUN cd /etc/yum.repos.d/
-#RUN mv CentOS-Base.repo CentOS-Base.repo.old
-RUN rm -rf CentOS-Base.repo
-RUN yum clean all
-RUN yum -y update
-RUN yum -y install httpd
-COPY index.html /var/www/html/
-CMD ["//sbin/httpd", "-D" , "FOREGROUND"]
-EXPOSE 80
+                                                                                  Dockerfile                                                                                               FROM ubuntu:20.04
+RUN apt-get update
+WORKDIR /home
+RUN apt-get install curl -y
+RUN  curl -sL https://deb.nodesource.com/setup_12.x | bash
+RUN  apt-get install -y nodejs
+COPY index.js /home/
+COPY package.json /home/
+RUN cd /home && npm install
+EXPOSE 4600
+CMD ["node","index.js"]
