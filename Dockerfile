@@ -1,19 +1,12 @@
-FROM node:14
-
-# Setting working directory. All the path will be relative to WORKDIR
-WORKDIR /usr/src/app
-
-# Install app dependencies
-# A wildcard is used to ensure both package.json AND package-lock.json are copied
-# where available (npm@5+)
-COPY package*.json ./
-
-RUN npm install
-# If you are building your code for production
-# RUN npm ci --only=production
-
-# Bundle app source
-COPY . .
-
-EXPOSE 3000
-CMD [ "node", "index.js" ]
+FROM centos:centos6
+MAINTAINER  ismaeelhaider
+RUN cd /etc/yum.repos.d/
+#RUN mv CentOS-Base.repo CentOS-Base.repo.old
+RUN rm -rf CentOS-Base.repo
+COPY CentOS-Base.repo /etc/yum.repos.d/
+RUN yum clean all
+RUN yum -y update 
+RUN yum -y install httpd
+COPY index.html /var/www/html/
+CMD ["//sbin/httpd", "-D" , "FOREGROUND"]
+EXPOSE 80
