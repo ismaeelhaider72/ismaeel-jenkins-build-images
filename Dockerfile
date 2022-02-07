@@ -1,4 +1,4 @@
-                                                                                  Dockerfile                                                                                               FROM ubuntu:20.04
+FROM ubuntu:20.04
 RUN apt-get update
 WORKDIR /home
 RUN apt-get install curl -y
