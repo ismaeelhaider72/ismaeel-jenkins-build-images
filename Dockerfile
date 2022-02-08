@@ -4,11 +4,9 @@ WORKDIR /home
 RUN apt-get install curl -y
 RUN  curl -sL https://deb.nodesource.com/setup_12.x | bash
 RUN  apt-get install -y nodejs
-RUN ls -la
-COPY package*.json ./
-RUN ls -la
 COPY index.js /home/
 COPY package.json /home/
 RUN cd /home && npm install
+RUN ls -la
 EXPOSE 4600
 CMD ["node","index.js"]
